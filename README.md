@@ -14,3 +14,9 @@
  
 ## UI: 
 Bootstrap -> formatting
+
+
+## Resources
+
+### Tutorial Notes
+[Rails App Configuration](https://rails.devcamp.com/professional-rails-development-course/application-build/rails-app-configuration)
