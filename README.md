@@ -21,3 +21,4 @@ Bootstrap -> formatting
 ### Tutorial Notes
 [Rails App Configuration](https://rails.devcamp.com/professional-rails-development-course/application-build/rails-app-configuration)
 [Rails Authentication](https://rails.devcamp.com/professional-rails-development-course/application-build/rails-authentication)
+[Customizing Devise](https://rails.devcamp.com/professional-rails-development-course/application-build/customizing-devise)
