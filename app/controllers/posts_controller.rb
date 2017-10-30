@@ -12,5 +12,7 @@ class PostsController < ApplicationController
     @post = Post.new(params.require(:post).permit(:date, :rationale))
 
     @post.save
+
+    redirect_to @post
   end
 end
