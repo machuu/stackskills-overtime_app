@@ -23,6 +23,8 @@ describe 'navigate' do
       visit new_post_path
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: 'some rationale'
+
+      click_on 'Save'
     end
   end
 end
