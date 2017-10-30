@@ -25,6 +25,8 @@ describe 'navigate' do
       fill_in 'post[rationale]', with: 'some rationale'
 
       click_on 'Save'
+
+      expect(page).to have_content("some rationale")
     end
   end
 end
