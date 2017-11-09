@@ -8,6 +8,9 @@ require 'rspec/rails'
 require 'spec_helper'
 require 'capybara/rails'
 
+include Warden::Test::Helpers
+Warden.test_mode!
+
 # Checks for pending migrations and applies them before tests are run.
 ActiveRecord::Migration.maintain_test_schema!
 
