@@ -11,8 +11,8 @@ x AdminUser -> STI
 - Administrate Admin dashboard
 - Email summary to managers for approval
 - Needs to be documented if employee did not log overtime
- 
-## UI: 
+
+## UI:
 Bootstrap -> formatting
 
 
@@ -22,3 +22,7 @@ Bootstrap -> formatting
 [Rails App Configuration](https://rails.devcamp.com/professional-rails-development-course/application-build/rails-app-configuration)
 [Rails Authentication](https://rails.devcamp.com/professional-rails-development-course/application-build/rails-authentication)
 [Customizing Devise](https://rails.devcamp.com/professional-rails-development-course/application-build/customizing-devise)
+
+## Refactor TODOS:
+
+- Refactor User Association integration test in `post_spec`_
