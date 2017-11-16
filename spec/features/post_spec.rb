@@ -15,7 +15,7 @@ describe 'navigate' do
 
   describe 'creation' do
     before do
-      @user = User.create(email: "test@test.com",
+      user = User.create(email: "test@test.com",
                           password: "foobar",
                           password_confirmation: "foobar",
                           first_name: "test",
