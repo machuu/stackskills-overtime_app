@@ -20,7 +20,7 @@ describe 'navigate' do
                           password_confirmation: "foobar",
                           first_name: "test",
                           last_name: "user")
-      login_as(user, scope: user)
+      login_as(user, scope: "user")
       visit new_post_path
     end
 
