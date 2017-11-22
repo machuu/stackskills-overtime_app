@@ -13,7 +13,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
+    if @post.update(post_params)
+      redirect_to @post, notice: 'Your Post was successfully edited'
+    else
+      render :edit
+    end
   end
 
   def create
