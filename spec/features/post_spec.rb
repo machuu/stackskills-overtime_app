@@ -58,11 +58,14 @@ describe 'navigate' do
   end
 
   describe 'edit' do
+    before do
+      @post = FactoryBot.create(:post)
+    end
+
     it 'can be reached by clicking edit on index page' do
-      post = FactoryBot.create(:post)
       visit posts_path
 
-      click_link "edit_#{post.id}"
+      click_link "edit_#{@post.id}"
       expect(page.status_code).to eq(200)
     end
   end
