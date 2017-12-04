@@ -77,7 +77,8 @@ describe 'navigate' do
 
   describe 'edit' do
     before do
-      @post = FactoryBot.create(:post)
+      # @post = FactoryBot.create(:post)
+      @post = Post.create(date: Date.today, rationale: "asdf", user_id: @user.id )
     end
 
     it 'can be reached by clicking edit on index page' do
