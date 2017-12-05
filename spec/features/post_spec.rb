@@ -19,13 +19,18 @@ describe 'navigate' do
       expect(page).to have_content(/Posts/)
     end
 
-    it "has a list of posts" do
-      post1 = FactoryBot.create(:post)
-      post2 = FactoryBot.create(:second_post)
+    it 'can only see current_user posts' do
+      FactoryBot.create(:post, user: @user)
+      FactoryBot.create(:second_post, user: @user)
+      @another_user = FactoryBot.create(:another_user)
+      FactoryBot.create(:third_post, user: @another_user)
 
       visit posts_path
 
-      expect(page).to have_content(/Post1|Post2/)
+      expect(page).to have_content(/Post1/)
+      expect(page).to have_content(/Post2/)
+      expect(page).to_not have_content(/Post3/)
+
     end
   end
 
@@ -40,7 +45,7 @@ describe 'navigate' do
 
   describe 'delete' do
     it 'can be deleted' do
-      @post = FactoryBot.create(:post)
+      @post = FactoryBot.create(:post, user: @user)
       visit posts_path
       click_link "delete_post_#{@post.id}_from_index"
       expect(page.status_code).to eq(200)
@@ -77,7 +82,7 @@ describe 'navigate' do
 
   describe 'edit' do
     before do
-      @post = FactoryBot.create(:post)
+      @post = FactoryBot.create(:post, user: @user)
     end
 
     it 'can be reached by clicking edit on index page' do
@@ -96,6 +101,16 @@ describe 'navigate' do
       click_on 'Save'
 
       expect(User.last.posts.last.rationale).to eq("Edited Content")
+    end
+
+    it 'can not be edited by a non-authorized user' do
+      logout(:user)
+      non_authorized_user = FactoryBot.create(:non_authorized_user)
+      login_as(non_authorized_user, scope: :user)
+
+      visit edit_post_path(@post)
+
+      expect(current_path).to eq(root_path)
     end
   end
 end

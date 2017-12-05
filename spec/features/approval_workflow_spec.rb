@@ -3,12 +3,13 @@ require 'rails_helper'
 describe 'navigate' do
   before do
     @admin_user = FactoryBot.create(:admin_user)
+    @user       = FactoryBot.create(:user)
     login_as(@admin_user, scope: :user)
   end
 
   describe 'edit' do
     before do
-      @post = FactoryBot.create(:post)
+      @post = FactoryBot.create(:post, user: @user)
     end
 
     it 'has a status that can be edited on the form by an admin' do
@@ -20,9 +21,8 @@ describe 'navigate' do
     end
 
     it 'can not be edited by a non-admin' do
-      logout(:user)
-      user = FactoryBot.create(:user)
-      login_as(user, scope: :user)
+      logout(:admin_user)
+      login_as(@user, scope: :user)
 
       visit edit_post_path(@post)
 
