@@ -20,8 +20,8 @@ describe 'navigate' do
     end
 
     it "has a list of posts" do
-      post1 = FactoryBot.create(:post)
-      post2 = FactoryBot.create(:second_post)
+      post1 = FactoryBot.create(:post, user: @user)
+      post2 = FactoryBot.create(:second_post, user: @user)
 
       visit posts_path
 
@@ -40,7 +40,7 @@ describe 'navigate' do
 
   describe 'delete' do
     it 'can be deleted' do
-      @post = FactoryBot.create(:post)
+      @post = FactoryBot.create(:post, user: @user)
       visit posts_path
       click_link "delete_post_#{@post.id}_from_index"
       expect(page.status_code).to eq(200)
@@ -77,8 +77,7 @@ describe 'navigate' do
 
   describe 'edit' do
     before do
-      # @post = FactoryBot.create(:post)
-      @post = Post.create(date: Date.today, rationale: "asdf", user_id: @user.id )
+      @post = FactoryBot.create(:post, user: @user)
     end
 
     it 'can be reached by clicking edit on index page' do

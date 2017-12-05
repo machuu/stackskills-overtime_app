@@ -9,8 +9,7 @@ describe 'navigate' do
 
   describe 'edit' do
     before do
-      # @post = FactoryBot.create(:post)
-      @post = Post.create(date: Date.today, rationale: "asdf", user_id: @user.id )
+      @post = FactoryBot.create(:post, user: @user)
     end
 
     it 'has a status that can be edited on the form by an admin' do
