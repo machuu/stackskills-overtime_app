@@ -19,13 +19,18 @@ describe 'navigate' do
       expect(page).to have_content(/Posts/)
     end
 
-    it "has a list of posts" do
-      post1 = FactoryBot.create(:post, user: @user)
-      post2 = FactoryBot.create(:second_post, user: @user)
+    it 'can only see current_user posts' do
+      FactoryBot.create(:post, user: @user)
+      FactoryBot.create(:second_post, user: @user)
+      @another_user = FactoryBot.create(:another_user)
+      FactoryBot.create(:third_post, user: @another_user)
 
       visit posts_path
 
-      expect(page).to have_content(/Post1|Post2/)
+      expect(page).to have_content(/Post1/)
+      expect(page).to have_content(/Post2/)
+      expect(page).to_not have_content(/Post3/)
+
     end
   end
 
