@@ -1,9 +1,13 @@
 require 'rails_helper'
 
 describe 'navigate' do
+  let(:user) { FactoryBot.create(:user) }
+  let(:another_user) { FactoryBot.create(:another_user) }
+  let(:non_authorized_user) { FactoryBot.create(:non_authorized_user) }
+  let(:admin_user) { FactoryBot.create(:admin_user) }
+
   before do
-    @user = FactoryBot.create(:user)
-    login_as(@user, scope: "user")
+    login_as(user, scope: :user)
   end
 
   describe 'index' do
@@ -20,10 +24,9 @@ describe 'navigate' do
     end
 
     it 'can only see current_user posts' do
-      FactoryBot.create(:post, user: @user)
-      FactoryBot.create(:second_post, user: @user)
-      @another_user = FactoryBot.create(:another_user)
-      FactoryBot.create(:third_post, user: @another_user)
+      FactoryBot.create(:post, user: user)
+      FactoryBot.create(:second_post, user: user)
+      FactoryBot.create(:third_post, user: another_user)
 
       visit posts_path
 
@@ -45,7 +48,7 @@ describe 'navigate' do
 
   describe 'delete' do
     it 'can be deleted' do
-      @post = FactoryBot.create(:post, user: @user)
+      @post = FactoryBot.create(:post, user: user)
       visit posts_path
       click_link "delete_post_#{@post.id}_from_index"
       expect(page.status_code).to eq(200)
@@ -82,7 +85,7 @@ describe 'navigate' do
 
   describe 'edit' do
     before do
-      @post = FactoryBot.create(:post, user: @user)
+      @post = FactoryBot.create(:post, user: user)
     end
 
     it 'can be reached by clicking edit on index page' do
@@ -105,7 +108,6 @@ describe 'navigate' do
 
     it 'can not be edited by a non-authorized user' do
       logout(:user)
-      non_authorized_user = FactoryBot.create(:non_authorized_user)
       login_as(non_authorized_user, scope: :user)
 
       visit edit_post_path(@post)
