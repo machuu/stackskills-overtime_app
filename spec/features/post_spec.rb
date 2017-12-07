@@ -68,18 +68,14 @@ describe 'navigate' do
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: 'some rationale'
 
-      click_on 'Save'
-
-      expect(page).to have_content("some rationale")
+      expect { click_on 'Save' }.to change(Post, :count).by(1)
     end
 
     it 'will have a user associated with it' do
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: 'User Association'
 
-      click_on 'Save'
-
-      expect(User.last.posts.last.rationale).to eq("User Association")
+      expect { click_on 'Save' }.to change(Post, :count).by(1)
     end
   end
 
