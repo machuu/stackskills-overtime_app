@@ -67,6 +67,7 @@ describe 'navigate' do
     it 'can be created from new form page' do
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: 'some rationale'
+      fill_in 'post[overtime_request]', with: '1.5'
 
       expect { click_on 'Save' }.to change(Post, :count).by(1)
     end
@@ -74,6 +75,7 @@ describe 'navigate' do
     it 'will have a user associated with it' do
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: 'User Association'
+      fill_in 'post[overtime_request]', with: '1.5'
 
       expect { click_on 'Save' }.to change(Post, :count).by(1)
     end
