@@ -20,9 +20,13 @@ RSpec.describe Post, type: :model do
       expect(@post).to_not be_valid
     end
 
-
     it 'is invalid with a nil overtime_request' do
       @post.overtime_request = nil
+      expect(@post).to_not be_valid
+    end
+
+    it 'is invalid with overtime_request <= 0.0' do
+      @post.overtime_request = 0.0
       expect(@post).to_not be_valid
     end
   end
