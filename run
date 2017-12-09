@@ -2,4 +2,4 @@
 #
 # run rails app locally
 
-rails server -b $IP -p $PORT
+rails server puma -b $IP -p $PORT
