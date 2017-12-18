@@ -17,6 +17,7 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 4.8'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -31,3 +32,4 @@ gem 'administrate', '~> 0.8'
 gem 'bourbon'
 gem 'pundit', '~> 1.1'
 gem 'puma', '~> 3.11'
+gem 'twilio-ruby', '~> 5.5'
