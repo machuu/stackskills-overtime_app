@@ -32,6 +32,11 @@ RSpec.describe User, type: :model do
         user.phone = "tencharstr"
         expect(user).to_not be_valid
       end
+
+      it "requires the phone attribute to only have 10 characters" do
+        user.phone = "12345678901"
+        expect(user).to_not be_valid
+      end
     end
 
     describe "custom name methods" do
