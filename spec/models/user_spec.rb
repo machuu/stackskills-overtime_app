@@ -27,6 +27,11 @@ RSpec.describe User, type: :model do
          user.phone = nil
          expect(user).to_not be_valid
       end
+
+      it "requires the phone attribute to only contain integers" do
+        user.phone = "tencharstr"
+        expect(user).to_not be_valid
+      end
     end
 
     describe "custom name methods" do
